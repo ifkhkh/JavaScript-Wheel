@@ -11,19 +11,22 @@ const isTypeOf = (o) => {
 
 // compare with result of isTypeOf func
 class JSType {
-    static function() {
-        return 'Function'
-    }
-    static array() {
-        return 'Array'
-    }
-    static string() {
-        return 'String'
-    }
-    static regexp() {
-        return 'Regexp'
-    }
-    static number() {
-        return 'Number'
+    // 用来跟 isTypeOf 的结果比对
+    static function = 'Function'
+
+    static array = 'Array'
+
+    static string = 'String'
+
+    static regexp = 'Regexp'
+
+    static number = 'Number'
+
+    static object = 'Object'
+
+    static element = {
+        input: 'HTMLInputElement',
+        li: 'HTMLLIElement',
+        div: 'HTMLDivElement',
     }
 }
