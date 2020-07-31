@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #id-dudu {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+<div id="id-p">
+    <div id="id-dudu">我是来测试的</div>
+</div>
+<!--<a id="id-d" href="#">保存</a>-->
+<button id="id-d" onclick="handleSave(this)">保存</button>
+<script>
+    const _e = document.querySelector.bind(document)
+
+    const handleSave = (e) => {
+        saveAs()
+    }
+
+    const saveAs = () => {
+        // 将 canvs 保存为图片
+        const canvasElement = _e('#id-p').querySelector('canvas')
+        const fileType = 'image/png'
+        const imgURL = canvasElement.toDataURL()
+        _e('#id-d').href = imgURL
+        const dlLink = document.createElement('a');
+        dlLink.download = '测试图' // filename
+        dlLink.href = imgURL;
+        dlLink.dataset.downloadurl = [fileType, dlLink.download, dlLink.href].join(':');
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+    }
+
+    window.onload = () => {
+        html2canvas(_e('#id-dudu')).then(function(canvas) {
+            // 隐藏 dom
+            _e('#id-dudu').style.display = 'none'
+            // 插入 canvas
+            _e('#id-p').appendChild(canvas);
+
+        });
+    }
+</script>
+</body>
+</html>
